@@ -1,24 +1,52 @@
 import java.util.*;
 import java.io.*;
 public class USACO{
-  private static int[][] map;
-  private static int[] basics;
-  //0: rows
-  //1: cols
-  //2: elevation
-  //3: number of instructions
 
-  public USACO(String filename) throws FileNotFoundException{
-    try{
-      basics = new int[4];
-      storeArray(filename);
+  public static int bronze(String filename) throws FileNotFoundException{
+    int[] basics = new int[4]; //stores info from first line
+    //0: rows
+    //1: cols
+    //2: elevation
+    //3: number of instructions
+    File f = new File(filename);
+    Scanner s1 = new Scanner(f);
+    //String l1 = s1.nextLine();
+    /*
+    * Line 1: Four space-separated integers: R, C, E, N
+    */
+    String temp = "";
+    int idx = 0;
+    while (idx < 4){ //stores first line
+      temp = s1.next();
+      basics[idx]=Integer.parseInt(temp);
+      idx++;
     }
-    catch (FileNotFoundException e){
-      System.out.println("file not found");
+    int[][] map = new int[basics[0]][basics[1]]; //instantiate map
+    temp = "";
+    /*
+    * Lines 2..R+1: Line i+1 describes row of squares i with C
+        space-separated integers
+    */
+    int r = 0;
+    int c = 0;
+    //^^^ vars for storing in map
+    while (r < basics[0]){
+      c=0;
+      while (c < basics[1]){
+        temp = s1.next();
+        map[r][c]=Integer.parseInt(temp); //store values into map
+        c++; //new column
+      }
+      r++; //new row
     }
-  }
-  public static int bronze(String filename){
-    //storeArray(filename);
+    //testing
+    System.out.println("Row: "+basics[0]);
+    System.out.println("Col: "+basics[1]);
+    System.out.println(toString(map));
+    /*
+    * Lines R+2..R+N+1: Line i+R+1 describes stomp-digging instruction i
+        with three integers: R_s, C_s, and D_s
+    */
     return 0; //dummy
   }
 
@@ -27,58 +55,10 @@ public class USACO{
     return 0; //dummy
   }
 
+/*
   //stores values into an int array
   public static void storeArray(String filename) throws FileNotFoundException{
-    File f = new File(filename);
-    Scanner s1 = new Scanner(f);
-    String l1 = s1.nextLine();
-    /*
-    * Line 1: Four space-separated integers: R, C, E, N
-    */
-    String temp = "";
-    int spaces = 0;
-    for (int i = 0; i < l1.length(); i++){
-      if (l1.charAt(i)==' '){
-        getBasics()[spaces]=Integer.parseInt(temp); //stores the basics
-        spaces++;
-        temp = "";
-      }
-      else{
-        temp+=l1.charAt(i);
-      }
-    }
-    getBasics()[spaces]=Integer.parseInt(temp); //stores final number
-    map = new int[getBasics()[0]][getBasics()[1]]; //instantiate map
-    temp = "";
-    spaces = 0; //reset spaces
-    /*
-    * Lines 2..R+1: Line i+1 describes row of squares i with C
-        space-separated integers
-    */
-    int r = 0;
-    int c = 0;
-    //^^^ vars for storing in map
-    while (s1.hasNextLine()){
-      String s = s1.nextLine();
-      for (int i = 0; i < s.length(); i++){
-        if (s.charAt(i)==' '){
-          map[r][c]=Integer.parseInt(temp);
-          c++;
-          temp = "";
-        }
-        else{
-          temp+=s.charAt(i);
-        }
-      }
-      map[r][c]=Integer.parseInt(temp); //stores final number
-      //starting new row
-      r++;
-      c=0;
-    }
-    /*
-    * Lines R+2..R+N+1: Line i+R+1 describes stomp-digging instruction i
-        with three integers: R_s, C_s, and D_s
-    */
+
   }
 
   public static int[][] getMap(){
@@ -87,13 +67,13 @@ public class USACO{
 
   public static int[] getBasics(){
     return basics;
-  }
+  }*/
 
-  public String toString(){
+  public static String toString(int[][] ary){
     String output = "";
-    for (int i = 0; i < map.length; i++){
-      for (int j = 0; j < map[0].length; j++){
-        output += map[i][j] + ' ';
+    for (int i = 0; i < ary.length; i++){
+      for (int j = 0; j < ary[0].length; j++){
+        output += ary[i][j] + " ";
       }
       output += "\n";
     }
