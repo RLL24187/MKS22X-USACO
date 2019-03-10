@@ -36,9 +36,9 @@ public class USACO{
       row++; //new row
     }
     //testing
-    System.out.println("Row: "+basics[0]);
-    System.out.println("Col: "+basics[1]);
-    System.out.println(toString(map));
+    //System.out.println("Row: "+basics[0]);
+    //System.out.println("Col: "+basics[1]);
+    //System.out.println(toString(map));
     /*
     * Lines R+2..R+N+1: Line i+R+1 describes stomp-digging instruction i
         with three integers: R_s, C_s, and D_s
@@ -51,13 +51,13 @@ public class USACO{
       directions[n][2]=Integer.parseInt(s1.next());
       n++;
     }
-    System.out.println("Number of instructions: "+basics[3]);
-    System.out.println(toString(directions));
+    //System.out.println("Number of instructions: "+basics[3]);
+    //System.out.println(toString(directions));
 
     for (int i = 0 ; i < directions.length; i++){ //loop thru directions and stomp the map
       stomp(map, directions[i][0], directions[i][1], directions[i][2]);
     }
-    System.out.println("After Stomping: \n"+toString(map));
+    //System.out.println("After Stomping: \n"+toString(map));
 
     int depth = 0; //total aggregated depth
     for (int r = 0; r < map.length; r++) {
@@ -70,9 +70,9 @@ public class USACO{
       }
     }
     depth*= (72*72); //multiply by 6 feet x 6 feet or 72 inches by 72 inches
-    System.out.println("Elevation: "+basics[2]);
-    System.out.println("After elevation change: \n"+toString(map));
-    System.out.println("Total depth: "+depth);
+    //System.out.println("Elevation: "+basics[2]);
+    //System.out.println("After elevation change: \n"+toString(map));
+    //System.out.println("Total depth: "+depth);
     return depth;
   }
 
