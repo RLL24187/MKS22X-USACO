@@ -7,8 +7,7 @@ public class Driver{
     }
     else{
       try{
-        USACO u = new USACO(args[0]);
-        System.out.println(u.toString());
+        USACO.bronze(args[0]);
       }
       catch (FileNotFoundException e){
         System.out.println("File not found");
