@@ -76,10 +76,6 @@ public class USACO{
     return depth;
   }
 
-  public static int silver(String filename){
-    return 0; //dummy
-  }
-
   //cow stomp given directions
   public static void stomp(int[][] map, int row, int col, int depth){
     int[][] sqrs = new int[3][3];
@@ -103,6 +99,7 @@ public class USACO{
     }
   }
 
+  //prints out the array of ints
   public static String toString(int[][] ary){
     String output = "";
     for (int i = 0; i < ary.length; i++){
@@ -113,4 +110,48 @@ public class USACO{
     }
     return output;
   }
+
+  //prints out the array of chars
+  public static String toString(char[][] ary){
+    String output = "";
+    for (int i = 0; i < ary.length; i++){
+      for (int j = 0; j < ary[0].length; j++){
+        output += ary[i][j] + " ";
+      }
+      output += "\n";
+    }
+    return output;
+  }
+
+    public static int silver(String filename) throws FileNotFoundException{
+      File f = new File(filename);
+      Scanner s = new Scanner(f);
+      //* Line 1: Three space-separated integers: N, M, and T
+      int[] basics = new int[3];
+      //0: N - rows
+      //1: M - columns
+      //2: T - seconds
+      for (int i = 0; i < 3; i++){
+        basics[i]=Integer.parseInt(s.next()); //stores basic info from first line
+      }
+      s.nextLine(); //go to second line
+      char[][] map= new char[basics[0]][basics[1]]; //instantiate the map
+      for (int n = 0; n < basics[0]; n++){ //fill in values for the map
+        String str = s.nextLine();
+        for (int c = 0; c < basics[1]; c++){
+          map[n][c]=str.charAt(c);
+        }
+      }
+      //'.' is open pasture
+      //'*' is trees
+      System.out.println("Rows: "+basics[0]);
+      System.out.println("Cols: "+basics[1]);
+      System.out.println(toString(map));
+
+      //* Lines 2..N+1: Line i+1 describes row i of the pasture with exactly M
+      //        characters that are each '.' or '*'
+
+      //* Line N+2: Four space-separated integers: R1, C1, R2, and C2.
+      return 0; //dummy
+    }
 }
