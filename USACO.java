@@ -135,11 +135,14 @@ public class USACO{
         basics[i]=Integer.parseInt(s.next()); //stores basic info from first line
       }
       s.nextLine(); //go to second line
-      char[][] map= new char[basics[0]][basics[1]]; //instantiate the map
+      int[][] map= new int[basics[0]][basics[1]]; //instantiate the map
       for (int n = 0; n < basics[0]; n++){ //fill in values for the map
         String str = s.nextLine();
         for (int c = 0; c < basics[1]; c++){
-          map[n][c]=str.charAt(c);
+          if (str.charAt(c)=='.'){ //open pasture
+            map[n][c]=0;
+          }
+          else map[n][c]=-1; //tree
         }
       }
       //'.' is open pasture
@@ -161,7 +164,7 @@ public class USACO{
       }
       //* Line N+2: Four space-separated integers: R1, C1, R2, and C2.
 
-      
+
       return 0; //dummy
     }
 }
