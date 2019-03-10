@@ -53,27 +53,40 @@ public class USACO{
     }
     System.out.println("Number of instructions: "+basics[3]);
     System.out.println(toString(directions));
+
+    for (int i = 0 ; i < directions.length; i++){ //loop thru directions and stomp the map
+      stomp(map, directions[i][0], directions[i][1], directions[i][2]);
+    }
+    System.out.println("After Stomping: \n"+toString(map));
     return 0; //dummy
   }
 
   public static int silver(String filename){
-    //storeArray(filename);
     return 0; //dummy
   }
 
-/*
-  //stores values into an int array
-  public static void storeArray(String filename) throws FileNotFoundException{
-
+  //cow stomp given directions
+  public static void stomp(int[][] map, int row, int col, int depth){
+    int[][] sqrs = new int[3][3];
+    int max = 0;
+    for (int r = 0; r < 3; r ++) { //find max number
+      for (int c = 0; c < 3; c++) {
+        sqrs[r][c] = map[row+r-1][col+c-1];
+        if (sqrs[r][c] > max){
+          max = sqrs[r][c];
+        }
+      }
+    }
+    int min = max - depth;
+    for (int r = 0; r < 3; r++) {
+      for (int c = 0; c < 3; c++) {
+        if (sqrs[r][c] > min){ //let the other cows catch up
+          sqrs[r][c] = min;
+        }
+        map[row+r-1][col+c-1] = sqrs[r][c];
+      }
+    }
   }
-
-  public static int[][] getMap(){
-    return map;
-  }
-
-  public static int[] getBasics(){
-    return basics;
-  }*/
 
   public static String toString(int[][] ary){
     String output = "";
