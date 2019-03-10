@@ -151,7 +151,17 @@ public class USACO{
       //* Lines 2..N+1: Line i+1 describes row i of the pasture with exactly M
       //        characters that are each '.' or '*'
 
+      int[] coors = new int[4];
+      //0: R1
+      //1: C1
+      //2: R2
+      //3: C2
+      for (int i = 0; i < 4; i++){ //store before and after coordinates
+        coors[i]=Integer.parseInt(s.next());
+      }
       //* Line N+2: Four space-separated integers: R1, C1, R2, and C2.
+
+      
       return 0; //dummy
     }
 }
