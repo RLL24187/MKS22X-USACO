@@ -14,15 +14,12 @@ public class USACO{
     /*
     * Line 1: Four space-separated integers: R, C, E, N
     */
-    String temp = "";
     int idx = 0;
     while (idx < 4){ //stores first line
-      temp = s1.next();
-      basics[idx]=Integer.parseInt(temp);
+      basics[idx]=Integer.parseInt(s1.next());
       idx++;
     }
     int[][] map = new int[basics[0]][basics[1]]; //instantiate map
-    temp = "";
     /*
     * Lines 2..R+1: Line i+1 describes row of squares i with C
         space-separated integers
@@ -33,8 +30,7 @@ public class USACO{
     while (r < basics[0]){
       c=0;
       while (c < basics[1]){
-        temp = s1.next();
-        map[r][c]=Integer.parseInt(temp); //store values into map
+        map[r][c]=Integer.parseInt(s1.next()); //store values into map
         c++; //new column
       }
       r++; //new row
@@ -47,6 +43,16 @@ public class USACO{
     * Lines R+2..R+N+1: Line i+R+1 describes stomp-digging instruction i
         with three integers: R_s, C_s, and D_s
     */
+    int[][] directions = new int[basics[3]][3]; //stores direction parameters
+    int n = 0;
+    while (n < basics[3]){
+      directions[n][0]=Integer.parseInt(s1.next());
+      directions[n][1]=Integer.parseInt(s1.next());
+      directions[n][2]=Integer.parseInt(s1.next());
+      n++;
+    }
+    System.out.println("Number of instructions: "+basics[3]);
+    System.out.println(toString(directions));
     return 0; //dummy
   }
 
