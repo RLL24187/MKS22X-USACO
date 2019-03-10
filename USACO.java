@@ -24,16 +24,16 @@ public class USACO{
     * Lines 2..R+1: Line i+1 describes row of squares i with C
         space-separated integers
     */
-    int r = 0;
-    int c = 0;
+    int row = 0;
+    int col = 0;
     //^^^ vars for storing in map
-    while (r < basics[0]){
-      c=0;
-      while (c < basics[1]){
-        map[r][c]=Integer.parseInt(s1.next()); //store values into map
-        c++; //new column
+    while (row < basics[0]){
+      col=0;
+      while (col < basics[1]){
+        map[row][col]=Integer.parseInt(s1.next()); //store values into map
+        col++; //new column
       }
-      r++; //new row
+      row++; //new row
     }
     //testing
     System.out.println("Row: "+basics[0]);
@@ -58,7 +58,22 @@ public class USACO{
       stomp(map, directions[i][0], directions[i][1], directions[i][2]);
     }
     System.out.println("After Stomping: \n"+toString(map));
-    return 0; //dummy
+
+    int depth = 0; //total aggregated depth
+    for (int r = 0; r < map.length; r++) {
+      for (int c = 0; c < map[0].length; c++) {
+        map[r][c] = basics[2] - map[r][c]; //squares are replaced with difference between elevation (basics[2]) minus their values
+        if (map[r][c] <= 0){
+          map[r][c] = 0; //turn negatives into 0s so it doesn't affect the total depth
+        }
+        depth += map[r][c]; //add to total depth
+      }
+    }
+    depth*= (72*72); //multiply by 6 feet x 6 feet or 72 inches by 72 inches
+    System.out.println("Elevation: "+basics[2]);
+    System.out.println("After elevation change: \n"+toString(map));
+    System.out.println("Total depth: "+depth);
+    return depth;
   }
 
   public static int silver(String filename){
