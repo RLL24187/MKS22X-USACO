@@ -147,9 +147,9 @@ public class USACO{
       }
       //'.' is open pasture
       //'*' is trees
-      System.out.println("Rows: "+basics[0]);
-      System.out.println("Cols: "+basics[1]);
-      System.out.println(toString(map));
+      //System.out.println("Rows: "+basics[0]);
+      //System.out.println("Cols: "+basics[1]);
+      //System.out.println(toString(map));
 
       //* Lines 2..N+1: Line i+1 describes row i of the pasture with exactly M
       //        characters that are each '.' or '*'
@@ -163,8 +163,40 @@ public class USACO{
         coors[i]=Integer.parseInt(s.next());
       }
       //* Line N+2: Four space-separated integers: R1, C1, R2, and C2.
+      map[coors[0]][coors[1]]=1;
+      //edit the map with a helper function
+      for (int i = 0; i < basics[2]; i++){
+        travelMap(map);
+      }
+      return map[coors[2]-1][coors[3]-1]; //return the number at the end coordinate
+    }
 
+    private static void travelMap(int[][] map){
+      int[][] increments = {{1, -1, 0, 0}, {0, 0, 1, -1}}; //relative movements
+      int[][] tempMap = new int[map.length][map[0].length]; //map will be set equal to this later
+      for (int r = 0; r < map.length; r++){
+        for (int c = 0; c < map[r].length; c++){
+          if (map[r][c]!= -1){ //if this is not a tree
+            int sum = 0; //number of ways to get to a square in T seconds
+            for (int i = 0; i < 4; i++){ //loop through all the relative coordinates
+              int tempR = r + increments[0][i];
+              int tempC = c + increments[1][i];
+              if (isField(map, r, c)){ //if a valid patch
+                sum+= map[r][c]; //increase the sum by the value of the patch
+              }
+            }
+            tempMap[r][c]=sum; //set tempMap's values
+          }
+        }
+      }
+      map = tempMap; //alter map
+    }
 
-      return 0; //dummy
+    //takes coordinates and sees if it's not a tree and in bounds
+    private static boolean isField(int[][] map, int r, int c){
+      if (r >= 0 && c >= 0 && r < map.length && c < map[r].length){
+        return map[r][c]!= -1;
+      }
+      return false;
     }
 }
