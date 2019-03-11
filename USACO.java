@@ -160,18 +160,27 @@ public class USACO{
       //2: R2
       //3: C2
       for (int i = 0; i < 4; i++){ //store before and after coordinates
-        coors[i]=Integer.parseInt(s.next());
+        coors[i]=Integer.parseInt(s.next())-1; //need to be adjusted by -1
+        //System.out.println(coors[i]);
       }
+      System.out.println(toString(map));
       //* Line N+2: Four space-separated integers: R1, C1, R2, and C2.
-      map[coors[0]][coors[1]]=1;
+      map[coors[0]][coors[1]]=1; //start the domino effect! (if it would work >:( )
+      System.out.println(toString(map));
       //edit the map with a helper function
       for (int i = 0; i < basics[2]; i++){
-        travelMap(map);
+        map = travelMap(map);
+        System.out.println("Map:\n"+toString(map));
       }
-      return map[coors[2]-1][coors[3]-1]; //return the number at the end coordinate
+      //System.out.println("R2: "+coors[2]);
+      //System.out.println("C2: "+coors[3]);
+      //System.out.println("Rows: "+basics[0]);
+      //System.out.println("Cols: "+basics[1]);
+      return map[coors[2]][coors[3]]; //return the number at the end coordinates
     }
 
-    private static void travelMap(int[][] map){
+    //increases the value of values in map
+    private static int[][] travelMap(int[][] map){
       int[][] increments = {{1, -1, 0, 0}, {0, 0, 1, -1}}; //relative movements
       int[][] tempMap = new int[map.length][map[0].length]; //map will be set equal to this later
       for (int r = 0; r < map.length; r++){
@@ -181,21 +190,27 @@ public class USACO{
             for (int i = 0; i < 4; i++){ //loop through all the relative coordinates
               int tempR = r + increments[0][i];
               int tempC = c + increments[1][i];
-              if (isField(map, r, c)){ //if a valid patch
-                sum+= map[r][c]; //increase the sum by the value of the patch
+              if (isField(map, tempR, tempC)){ //if new patch is a valid patch
+                sum+= map[tempR][tempC]; //increase the sum by the value of the patch
               }
             }
             tempMap[r][c]=sum; //set tempMap's values
+            System.out.println(toString(tempMap));
+          }
+          else{ //make sure this is a tree
+            tempMap[r][c]=-1;
           }
         }
       }
-      map = tempMap; //alter map
+      System.out.println("TempMap:\n"+toString(tempMap));
+      return tempMap;
+      //System.out.println("Map: \n"+toString(map));
     }
 
     //takes coordinates and sees if it's not a tree and in bounds
     private static boolean isField(int[][] map, int r, int c){
       if (r >= 0 && c >= 0 && r < map.length && c < map[r].length){
-        return map[r][c]!= -1;
+        return map[r][c]!= -1; //it's not a tree
       }
       return false;
     }
