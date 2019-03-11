@@ -15,17 +15,17 @@ public class Tester {
         } catch (FileNotFoundException e) {
             System.out.println(e);
         }
-        /*try {
+        try {
             //System.out.println(USACO.silver("testCases/ctravel.2.in"));
             System.out.println("Silver:");
             for (int i = 1; i < 6; i++) {
-                File checkPlus = new File("testCases/ctravel." + i + ".out");
+                File checkPlus = new File("ctravel." + i + ".out");
                 Scanner A = new Scanner(checkPlus);
-                System.out.println(i + " " + (USACO.silver("testCases/ctravel." + i + ".in") == A.nextInt()));
+                System.out.println(i + " " + (USACO.silver("ctravel." + i + ".in") == A.nextInt()));
                 A.close();
             }
         } catch (FileNotFoundException e) {
             System.out.println(e);
-        }*/
+        }
     }
 }
