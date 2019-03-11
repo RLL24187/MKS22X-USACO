@@ -163,14 +163,14 @@ public class USACO{
         coors[i]=Integer.parseInt(s.next())-1; //need to be adjusted by -1
         //System.out.println(coors[i]);
       }
-      System.out.println(toString(map));
+      //System.out.println(toString(map));
       //* Line N+2: Four space-separated integers: R1, C1, R2, and C2.
       map[coors[0]][coors[1]]=1; //start the domino effect! (if it would work >:( )
-      System.out.println(toString(map));
+      //System.out.println(toString(map));
       //edit the map with a helper function
       for (int i = 0; i < basics[2]; i++){
         map = travelMap(map);
-        System.out.println("Map:\n"+toString(map));
+        //System.out.println("Map:\n"+toString(map));
       }
       //System.out.println("R2: "+coors[2]);
       //System.out.println("C2: "+coors[3]);
@@ -195,14 +195,14 @@ public class USACO{
               }
             }
             tempMap[r][c]=sum; //set tempMap's values
-            System.out.println(toString(tempMap));
+            //System.out.println(toString(tempMap));
           }
           else{ //make sure this is a tree
             tempMap[r][c]=-1;
           }
         }
       }
-      System.out.println("TempMap:\n"+toString(tempMap));
+      //System.out.println("TempMap:\n"+toString(tempMap));
       return tempMap;
       //System.out.println("Map: \n"+toString(map));
     }
